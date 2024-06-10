@@ -1,5 +1,5 @@
 # Language Translation applicaton built in Python's Django Web Framework
-API's used:
+API/External package used:
 - googletrans python package for language translation
 
 # Features
