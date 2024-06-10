@@ -33,13 +33,11 @@ def translate_text(request):
         prompt = data.get('prompt')
         dest_lang = data.get('language')
         if prompt and dest_lang:
-            print("If statement")
             translator = Translator()
             text = translator.translate(text=prompt, src='auto', dest=dest_lang).text
             response["text"] = text
             response["status"] = True
         else:
-            print("Else statement")
             response["text"] = None
             response["status"] = False
     return JsonResponse(response)
@@ -56,25 +54,9 @@ def user_login(request):
     
     return render(request, 'app/login.html', {'form': form})
 
-
 def user_logout(request):
     logout(request)
     return redirect("user_login")
-
-
-# def user_register(request):
-    form  = UserCreationForm()
-    if request.method == "POST":
-        form = UserCreationForm(request.data)
-        if form.is_valid():
-            form.save()
-            print("User is created!")
-            return redirect("user_login")
-    context = {
-        'form': form
-    }
-    return render(request, 'app/register.html', context)    
-
 
 def user_register(request):
     if request.method == 'POST':
